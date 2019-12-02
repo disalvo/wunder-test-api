@@ -11,6 +11,12 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router
+    ->get('/', function () use ($router)
+    {
+        return $router->app->version();
+    })
+    ->group(['prefix' => 'api/v1'], function () use ($router)
+    {
+        $router->post('users','UsersController@create');
+    });
